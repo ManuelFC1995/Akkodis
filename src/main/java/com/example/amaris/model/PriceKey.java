@@ -1,10 +1,15 @@
 package com.example.amaris.model;
 
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PriceKey  {
 
     private int PRICE_LIST;

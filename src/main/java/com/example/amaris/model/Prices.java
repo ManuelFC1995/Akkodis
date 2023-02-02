@@ -16,7 +16,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Table(name = "prices")
 @IdClass(value = PriceKey.class)
-public class Prices implements Serializable {
+public class Prices implements Serializable, Comparable<Prices> {
     @Column(name="BRAND_ID")
     private int BRAND_ID;
     @Id
@@ -40,6 +40,7 @@ public class Prices implements Serializable {
     private int PRIORITY;
 
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,5 +52,11 @@ public class Prices implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(PRICE_LIST, PRODUCT_ID);
+    }
+
+
+    @Override
+    public int compareTo(Prices price1) {
+        return this.getPRIORITY()-price1.getPRIORITY();
     }
 }
