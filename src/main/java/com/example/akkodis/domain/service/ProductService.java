@@ -4,6 +4,7 @@ import com.example.akkodis.domain.PricesDbMapper;
 import com.example.akkodis.domain.model.Prices;
 import com.example.akkodis.infraestructure.model.PricesEntity;
 import com.example.akkodis.infraestructure.service.PriceService;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 @Service

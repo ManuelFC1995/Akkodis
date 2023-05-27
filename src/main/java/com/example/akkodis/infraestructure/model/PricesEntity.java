@@ -57,6 +57,6 @@ public class PricesEntity implements Serializable, Comparable<PricesEntity> {
 
   @Override
   public int compareTo(PricesEntity price1) {
-    return this.getPriority() - price1.getPriority();
+    return price1.getPriority() - this.getPriority();
   }
 }
