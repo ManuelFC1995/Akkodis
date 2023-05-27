@@ -1,31 +1,29 @@
-package com.example.amaris.model;
+package com.example.akkodis.infraestructure.model;
 
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.util.Objects;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PriceKey  {
+public class PriceKeyEntity {
 
-    private int PRICE_LIST;
+    private int price_List;
 
-    private int PRODUCT_ID;
+    private int product_Id;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PriceKey priceKey = (PriceKey) o;
-        return PRICE_LIST == priceKey.PRICE_LIST && PRODUCT_ID == priceKey.PRODUCT_ID;
+        PriceKeyEntity priceKey = (PriceKeyEntity) o;
+        return price_List == priceKey.price_List && product_Id == priceKey.product_Id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(PRICE_LIST, PRODUCT_ID);
+        return Objects.hash(price_List, product_Id);
     }
 }

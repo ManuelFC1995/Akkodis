@@ -1,13 +1,13 @@
-package com.example.amaris;
+package com.example.akkodis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AmarisApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AmarisApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
