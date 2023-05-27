@@ -1,7 +1,5 @@
 package com.example.akkodis.infraestructure.controller;
 
-import com.example.akkodis.application.exceptions.InvalidDateFormatException;
-import com.example.akkodis.application.exceptions.RecordNotFoundException;
 import com.example.akkodis.application.utils.Tools;
 import com.example.akkodis.domain.model.Prices;
 import com.example.akkodis.domain.service.ProductService;
@@ -10,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
