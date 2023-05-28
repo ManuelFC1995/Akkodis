@@ -14,6 +14,14 @@ public class PriceServiceImpl implements PriceService {
     @Autowired
     IpricesRepository repository;
 
+    /**
+     * Obtiene el precio por filtros de fecha, identificador de producto e identificador de cadena.
+     *
+     * @param date      Fecha de aplicación del precio
+     * @param productId Identificador de producto
+     * @param brandId   Identificador de cadena
+     * @return Entidad PricesEntity correspondiente al precio filtrado por fecha, o null si no se encuentra ningún precio
+     */
     @Override
     public PricesEntity getPriceByFilters(String date, int productId, int brandId) {
         return repository.findByBrandIdAndProductId(productId, brandId)
