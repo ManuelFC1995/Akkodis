@@ -6,6 +6,7 @@ import com.example.akkodis.domain.service.ProductService;
 import com.example.akkodis.infraestructure.model.request.ProductRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/prices")
+@RequestMapping(value = "/prices")
 @Slf4j
 public class AppController {
 
@@ -23,7 +24,7 @@ public class AppController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Prices> getPrice(@Validated ProductRequest request) {
         log.info("Fetching price for product: {}", request.getProductId());
         if (!Tools.isValidDateFormat(request.getDate())) {

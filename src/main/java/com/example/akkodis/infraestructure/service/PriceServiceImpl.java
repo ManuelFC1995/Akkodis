@@ -1,16 +1,12 @@
 package com.example.akkodis.infraestructure.service;
 
-import com.example.akkodis.domain.model.Prices;
 import com.example.akkodis.infraestructure.model.PricesEntity;
 import com.example.akkodis.infraestructure.repository.IpricesRepository;
 import com.example.akkodis.application.utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+
 
 
 @Service
