@@ -16,6 +16,7 @@ import org.springframework.test.context.ActiveProfiles
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Unroll
 
 import javax.transaction.Transactional
 
@@ -34,7 +35,7 @@ class AppControllerTest extends Specification {
     AppController appController
 
     @Autowired
-    private JdbcTemplate jdbcTemplate = Mock();
+    private JdbcTemplate jdbcTemplate = Mock()
 
     def setup() {
         appController = new AppController(productService)
@@ -45,13 +46,11 @@ class AppControllerTest extends Specification {
         jdbcTemplate.execute("INSERT INTO prices (BRAND_ID, PRICE_LIST, PRODUCT_ID, PRICE, START_DATE, END_DATE, CURR, PRIORITY) VALUES (1, 4, 35455, 38.95, '2020-06-15 16:00:00', '2020-12-31 23:59:59', 'EUR', 1)")
     }
 
-    def "should return prices when valid request is made 1"() {
+    @Unroll("should return prices when valid request is made #index")
+    def "should return prices for valid requests"() {
         given:
-        def request = new ProductRequest(productId: 35455, brandId: 1, date: "2020-06-14 19:00:00")
-        def expectedPrices = new Prices() // Define the expected prices object
-        expectedPrices.setProductId(35455)
-        expectedPrices.setBrandId(1)
-        expectedPrices.setPrice(25.45)
+        def request = new ProductRequest(productId: 35455, brandId: 1, date: date)
+        def expectedPrices = new Prices()
         productService.getProduct(request.date, request.productId, request.brandId) >> expectedPrices
 
         when:
@@ -60,96 +59,16 @@ class AppControllerTest extends Specification {
         then:
         response.statusCode == HttpStatus.NO_CONTENT
 
+        where:
+        index | date
+        1     | "2020-06-14 19:00:00"
+        2     | "2020-06-14 10:00:00"
+        3     | "2020-06-14 16:00:00"
+        4     | "2020-06-14 21:00:00"
+        5     | "2020-06-15 10:00:00"
+        6     | "2020-06-16 21:00:00"
     }
 
-    def "should return prices when valid request is made 2"() {
-        given:
-        def request = new ProductRequest(productId: 35455, brandId: 1, date: "2020-06-14 10:00:00")
-        def expectedPrices = new Prices() // Define the expected prices object
-        expectedPrices.setProductId(35455)
-        expectedPrices.setBrandId(1)
-        expectedPrices.setPrice(25.45)
-        productService.getProduct(request.date, request.productId, request.brandId) >> expectedPrices
-
-        when:
-        ResponseEntity<Prices> response = appController.getPrice(request)
-
-        then:
-        response.statusCode == HttpStatus.NO_CONTENT
-
-    }
-
-    def "should return prices when valid request is made 3"() {
-        given:
-        def request = new ProductRequest(productId: 35455, brandId: 1, date: "2020-06-14 16:00:00")
-        def expectedPrices = new Prices() // Define the expected prices object
-        expectedPrices.setProductId(35455)
-        expectedPrices.setBrandId(1)
-        expectedPrices.setPrice(25.45)
-        productService.getProduct(request.date, request.productId, request.brandId) >> expectedPrices
-
-        when:
-        ResponseEntity<Prices> response = appController.getPrice(request)
-
-        then:
-        response.statusCode == HttpStatus.NO_CONTENT
-
-    }
-
-
-    def "should return prices when valid request is made 4"() {
-        given:
-        def request = new ProductRequest(productId: 35455, brandId: 1, date: "2020-06-14 21:00:00")
-        def expectedPrices = new Prices() // Define the expected prices object
-        expectedPrices.setProductId(35455)
-        expectedPrices.setBrandId(1)
-        expectedPrices.setPrice(25.45)
-        productService.getProduct(request.date, request.productId, request.brandId) >> expectedPrices
-
-        when:
-        ResponseEntity<Prices> response = appController.getPrice(request)
-
-        then:
-        response.statusCode == HttpStatus.NO_CONTENT
-
-    }
-
-
-    def "should return prices when valid request is made 5"() {
-        given:
-        def request = new ProductRequest(productId: 35455, brandId: 1, date: "2020-06-15 10:00:00")
-        def expectedPrices = new Prices() // Define the expected prices object
-        expectedPrices.setProductId(35455)
-        expectedPrices.setBrandId(1)
-        expectedPrices.setPrice(25.45)
-        productService.getProduct(request.date, request.productId, request.brandId) >> expectedPrices
-
-        when:
-        ResponseEntity<Prices> response = appController.getPrice(request)
-
-        then:
-        response.statusCode == HttpStatus.NO_CONTENT
-
-    }
-
-
-
-    def "should return prices when valid request is made 6"() {
-        given:
-        def request = new ProductRequest(productId: 35455, brandId: 1, date: "2020-06-16 21:00:00")
-        def expectedPrices = new Prices() // Define the expected prices object
-        expectedPrices.setProductId(35455)
-        expectedPrices.setBrandId(1)
-        expectedPrices.setPrice(25.45)
-        productService.getProduct(request.date, request.productId, request.brandId) >> expectedPrices
-
-        when:
-        ResponseEntity<Prices> response = appController.getPrice(request)
-
-        then:
-        response.statusCode == HttpStatus.NO_CONTENT
-
-    }
 
     def "should return bad request when invalid date format is provided"() {
         given:
