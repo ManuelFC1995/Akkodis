@@ -46,11 +46,11 @@ public class PricesEntity implements Serializable, Comparable<PricesEntity> {
   @Override
   public boolean equals(Object o) {
       if (this == o) {
-          return true;
+        return true;
       }
-      if (o == null || getClass() != o.getClass()) {
-          return false;
-      }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     PricesEntity prices = (PricesEntity) o;
     return price_List == prices.price_List && product_Id == prices.product_Id;
   }
@@ -61,6 +61,12 @@ public class PricesEntity implements Serializable, Comparable<PricesEntity> {
   }
 
 
+  /**
+   * Compara dos objetos PricesEntity según su prioridad.
+   *
+   * @param price1 Objeto PricesEntity a comparar
+   * @return Valor negativo si el objeto actual tiene una prioridad mayor, valor positivo si tiene una prioridad menor, 0 si tienen la misma prioridad
+   */
   @Override
   public int compareTo(PricesEntity price1) {
     return price1.getPriority() - this.getPriority();

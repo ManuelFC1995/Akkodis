@@ -1,4 +1,4 @@
-# AppController (English)
+# AppController 
 
 The `AppController` is a REST controller responsible for handling product price-related requests. It is annotated with `@RestController` and mapped to the `/prices` route using `@RequestMapping`.
 
