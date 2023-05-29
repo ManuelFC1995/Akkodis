@@ -2,16 +2,12 @@ import com.example.akkodis.domain.model.Prices
 import com.example.akkodis.domain.service.ProductService
 import com.example.akkodis.infraestructure.model.request.ProductRequest
 import com.example.akkodis.infraestructure.controller.AppController
-import com.example.akkodis.infraestructure.repository.IpricesRepository
-import com.example.akkodis.infraestructure.service.PriceService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ActiveProfiles
 import spock.lang.Shared
 import spock.lang.Specification

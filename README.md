@@ -33,49 +33,45 @@ Make sure to configure the appropriate logging configuration to capture the log 
 ## Usage Example
 
 Here's an example of how you can use the microservice to retrieve product prices using a curl request:
+# Ejemplos de Uso
 
-```bash
-curl --location 'http://localhost:8080/prices?date=2020-06-16%2021%3A00%3A00&productId=35455&brandId=1'
-```
+En este archivo encontrarás una serie de ejemplos de uso que te ayudarán a probar y comprender el funcionamiento de la aplicación. Los ejemplos consisten en solicitudes cURL que puedes ejecutar desde la línea de comandos para obtener información sobre los precios de productos.
 
+Cada ejemplo representa una petición a la API de la aplicación, utilizando diferentes combinaciones de fecha, ID de producto y ID de marca. Estos ejemplos te permitirán familiarizarte con la estructura de las solicitudes y observar las respuestas correspondientes.
 
+A continuación, se presentan los ejemplos de uso disponibles:
+- Test 1: petición a las 10:00 del día 14 del producto 35455 para la marca 1 (ZARA)
 
-# AppController (Español)
+    ```
+    curl --location 'http://localhost:8080/prices?date=2020-06-14%2010%3A00%3A00&productId=35455&brandId=1'
+    ```
 
-El controlador `AppController` es un controlador REST que maneja las solicitudes relacionadas con los precios de productos. Está anotado con `@RestController` y mapeado a la ruta `/prices` utilizando `@RequestMapping`.
+- Test 2: petición a las 16:00 del día 14 del producto 35455 para la marca 1 (ZARA)
 
-## Dependencias
+    ```
+    curl --location 'http://localhost:8080/prices?date=2020-06-14%2016%3A00%3A00&productId=35455&brandId=1'
+    ```
 
-El controlador depende de `ProductService`, que se inyecta a través del constructor. Asegúrate de proporcionar una implementación válida de `ProductService` al crear una instancia de `AppController`.
+- Test 3: petición a las 21:00 del día 14 del producto 35455 para la marca 1 (ZARA)
 
-## Endpoints
+    ```
+    curl --location 'http://localhost:8080/prices?date=2020-06-14%2021%3A00%3A00&productId=35455&brandId=1'
+    ```
 
-El controlador define los siguientes endpoints:
+- Test 4: petición a las 10:00 del día 15 del producto 35455 para la marca 1 (ZARA)
 
-### Obtener precio
+    ```
+    curl --location 'http://localhost:8080/prices?date=2020-06-15%2010%3A00%3A00&productId=35455&brandId=1'
+    ```
 
+- Test 5: petición a las 21:00 del día 16 del producto 35455 para la marca 1 (ZARA)
 
-Este endpoint recibe una solicitud `ProductRequest` validada a través de la anotación `@Validated`. La solicitud debe contener los siguientes campos:
+    ```
+    curl --location 'http://localhost:8080/prices?date=2020-06-16%2021%3A00%3A00&productId=35455&brandId=1'
+    ```
 
-- `productId`: el ID del producto solicitado.
-- `brandId`: el ID de la marca del producto.
-- `date`: la fecha en formato válido.
+## Repository
 
-Si la fecha no tiene un formato válido, se devuelve una respuesta de error con el código de estado 400 (Bad Request).
+You can find the source code of this application in the following GitHub repository:
 
-Si la solicitud es válida, se llama al método `getProduct` del servicio `ProductService` para obtener el objeto `Prices` correspondiente. Si se encuentra un precio válido, se devuelve una respuesta con el código de estado 200 (OK) y el objeto `Prices` en el cuerpo de la respuesta. Si no se encuentra un precio válido, se devuelve una respuesta con el código de estado 204 (No Content).
-
-En caso de producirse un error durante la obtención del precio, se devuelve una respuesta con el código de estado 500 (Internal Server Error).
-
-## Registro
-
-El controlador utiliza el marco de registro `Slf4j` para registrar información y errores. Los mensajes de registro se envían a través del logger asociado al controlador.
-
-
-Asegúrate de configurar la configuración de registro adecuada para capturar los mensajes de registro generados por el controlador.
-
-A continuación se muestra cómo puedes utilizar el microservicio para obtener precios de productos a través de una solicitud curl de ejemplo:
-
-```bash
-curl --location 'http://localhost:8080/prices?date=2020-06-16%2021%3A00%3A00&productId=35455&brandId=1'
-```
+[Akkodis Repository](https://github.com/ManuelFC1995/Akkodis)
